@@ -87,21 +87,23 @@ def _get_browser():
     if _BROWSER is None:
         _PW = sync_playwright().start()
         _BROWSER = _PW.chromium.launch(
-            headless=HEADLESS,
-            args=[
-                "--disable-blink-features=AutomationControlled",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-                "--disable-gpu",
-                "--disable-extensions",
-                "--disable-background-networking",
-                "--disable-sync",
-                "--metrics-recording-only",
-                "--no-first-run",
-                "--disable-ipv6",
-                "--disable-features=Translate,BackForwardCache,"
-                "AcceptCHFrame,MediaRouter,OptimizationHints",
-            ],
+    headless=HEADLESS,
+    executable_path="/usr/bin/chromium",
+    args=[
+        "--disable-blink-features=AutomationControlled",
+        "--disable-dev-shm-usage",
+        "--no-sandbox",
+        "--disable-gpu",
+        "--disable-extensions",
+        "--disable-background-networking",
+        "--disable-sync",
+        "--metrics-recording-only",
+        "--no-first-run",
+        "--disable-ipv6",
+        "--disable-features=Translate,BackForwardCache,"
+        "AcceptCHFrame,MediaRouter,OptimizationHints",
+    ],
+        )
         )
         _CTX = _BROWSER.new_context(
             viewport=None,
